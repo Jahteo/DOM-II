@@ -118,14 +118,14 @@ imgs[0].addEventListener("dragstart", () => {imgs[0].setAttribute("src", "img/mo
 
     imgs[1].addEventListener("contextmenu", () => {
         firstP.textContent = "What were you expecting, clicking over there?";
-        // stopPropogation();
+        //will stop the window context menu from changing img[1] borderRadius
+        event.stopPropagation();
     })
 
     //Nest two similar events somewhere in the site and prevent the event propagation properly. Remember not all event types bubble.
     window.addEventListener("contextmenu", () => {
         imgs[1].style.borderRadius = "50%"
     })
-    //ugh, I can't figure out how to tie this to a div or section that doesn't also trigger it simultaneously. Not bc of bubling cascades, but litterally bc the trigger for the child is within the trigger for the parent..
 
     // [ ] Stop the navigation items from refreshing the page by using `preventDefault()`
     //Wouldn't a forEach be sooooooooooooo nice here? /sarcasm
