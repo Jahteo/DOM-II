@@ -83,10 +83,6 @@ window.addEventListener("scroll", () => {
     headers[1].style.backgroundColor = "grey"
 })
 
-[ ] Stop the navigation items from refreshing the page by using `preventDefault()`
-navLinks[0].addEventListener("click", (event) => {
-    event.preventDefault()
-})
 // //evertime I try to combine a forEach & a new thing it fails...
 // imgs.forEach(element => element.addEventListener("dragstart", (event) => {event.target.src = "../img/mouse-oops-i-think-i-broke-ur-computer.jpeg"}))
 
@@ -100,55 +96,56 @@ imgs[0].addEventListener("dragstart", () => {imgs[0].setAttribute("src", "img/mo
 
 // Failed attempt to play with `select`. I expect it to change the whole `p`s background, not just where I select...
 // document.querySelector("p").addEventListener("select", (event) => {
-//     //yeah, it's better procedure to declare the variable first in this case, but I wanted to know if it'd work.
-//     // document.querySelector("p").style.backgroundColor = "pink"
-//     // debugger
-//     event.target.style.backgroundColor = "pink" //proves something else is amiss...
-// })
-// console.log(document.querySelector("p")) //just to check that I was selecting text in the right area. Check.
+    //     //yeah, it's better procedure to declare the variable first in this case, but I wanted to know if it'd work.
+    //     // document.querySelector("p").style.backgroundColor = "pink"
+    //     // debugger
+    //     event.target.style.backgroundColor = "pink" //proves something else is amiss...
+    // })
+    // console.log(document.querySelector("p")) //just to check that I was selecting text in the right area. Check.
 
-//fix1, still broken.
-const firstP = document.querySelector("p")
-firstP.addEventListener("select", () => {
-    console.log(`this line is getting run, right?`) //proves the selector is broken. Yay. Such happiness.
-    firstP.style.background="pink"
-})
+    //fix1, still broken.
+    const firstP = document.querySelector("p")
+    firstP.addEventListener("select", () => {
+        console.log(`this line is getting run, right?`) //proves the selector is broken. Yay. Such happiness.
+        firstP.style.background="pink"
+    })
 
-//easy mouse events to at least get mvp...
+    //easy mouse events to at least get mvp...
 
-firstP.addEventListener("click", () => {
-    firstP.style.fontSize = "2rem"
-})
+    firstP.addEventListener("click", () => {
+        firstP.style.fontSize = "2rem"
+    })
 
-imgs[1].addEventListener("contextmenu", () => {
-    firstP.textContent = "What were you expecting, clicking over there?";
-    // stopPropogation();
-})
+    imgs[1].addEventListener("contextmenu", () => {
+        firstP.textContent = "What were you expecting, clicking over there?";
+        // stopPropogation();
+    })
 
-//Nest two similar events somewhere in the site and prevent the event propagation properly. Remember not all event types bubble.
-window.addEventListener("contextmenu", () => {
-    imgs[1].style.borderRadius = "50%"
-})
-//ugh, I can't figure out how to tie this to a div or section that doesn't also trigger it simultaneously. Not bc of bubling cascades, but litterally bc the trigger for the child is within the trigger for the parent..
+    //Nest two similar events somewhere in the site and prevent the event propagation properly. Remember not all event types bubble.
+    window.addEventListener("contextmenu", () => {
+        imgs[1].style.borderRadius = "50%"
+    })
+    //ugh, I can't figure out how to tie this to a div or section that doesn't also trigger it simultaneously. Not bc of bubling cascades, but litterally bc the trigger for the child is within the trigger for the parent..
 
-// [ ] Stop the navigation items from refreshing the page by using `preventDefault()`
-//Wouldn't a forEach be sooooooooooooo nice here? /sarcasm
-nav[0].addEventListener("click", (event) => {
-    event.preventDefault()
-})
-nav[1].addEventListener("click", (event) => {
-    event.preventDefault()
-})
-nav[2].addEventListener("click", (event) => {
-    event.preventDefault()
-})
-nav[3].addEventListener("click", (event) => {
-    event.preventDefault()
-})
+    // [ ] Stop the navigation items from refreshing the page by using `preventDefault()`
+    //Wouldn't a forEach be sooooooooooooo nice here? /sarcasm
+    //also, I left the last two commented out to show that they're not defaulting to refreshing the page anyways, so I can't tell if it's working or not...
+    navLinks[0].addEventListener("click", (event) => {
+        event.preventDefault()
+    })
+    navLinks[1].addEventListener("click", (event) => {
+        event.preventDefault()
+    })
+    // navLinks[2].addEventListener("click", (event) => {
+    //     event.preventDefault()
+    // })
+    // navLinks[3].addEventListener("click", (event) => {
+    //     event.preventDefault()
+    // })
 
 
-//original ambitions, Later realized that some were a bit advanced for the tools we have & my current skills.
-// * `wheel`qeue animation
+    //original ambitions, Later realized that some were a bit advanced for the tools we have & my current skills.
+    // * `wheel`qeue animation
 // * `load`
 // * `focus` on h1, bold
 // * `resize` reset display:none
