@@ -7,6 +7,8 @@ imgs.forEach(element => element.addEventListener("mouseover", (event) => event.t
 
 // * `keydown` all navLinks ->green
 const navLinks = Array.from(document.getElementsByClassName("nav-link"));
+console.log(navLinks) //returns expected
+console.log(navLinks[0]) //returns an html version, why?? Taja thinks this is part of the problem
 
 //const navLinks1 = //pretty sure this is the solution, break everything into simpler pieces.
 
@@ -40,14 +42,90 @@ const navLinks = Array.from(document.getElementsByClassName("nav-link"));
 //       console.log('wrong key, buddy')
 //     }
 //   })
-
-
 // }
+
+
+//      ohmalawd, why this don't work either... **Facepalm**
+//      walk away from the navLinks. calmly, but without looking back, walk away & don't stop.
+// const navLink1 = navLinks[0];
+// navLink1.addEventListener("mouseover", (event) => {event.target.setAttribute.color = "green"})
+
+const h1Text = document.querySelector("h1")
+console.log(h1Text)
+h1Text.addEventListener("mouseover", function () {
+    h1Text.textContent = "Isn't it nice when something just works finally??"
+})
+
+const firstImg = document.querySelector("img")
+firstImg.addEventListener("dblclick", () => {firstImg.style.opacity = 1})
+
+
+//I'm seriously tired of things that don't work at this point. I don't know why & I no longer have time to ask till friday. But there'll be plenty of notes for me to ask for help with. I just need some things to work at this point tbh.
+//this is a failed attempt to use `focus` and a declared/callback function.
+// const textContentp1 = document.querySelector(".text-content p")
+// function boldText (element) {
+//     element.target.style.fontWeight = "bold"
+// }
+// textContentp1.addEventListener("focus", boldText)
+
+//trying single line
+document.querySelector(".text-content p").addEventListener("mouseout", (event) => {event.target.style.color = "red"} )
+
+//single line window event listener
+window.addEventListener("resize", () => {document.querySelector(".text-content p").style.color = "green"
+})
+
+//scroll is also only useable on window, document or html??
+//how would I tweak this to cover all headers, using forEach? I've burnt myself out on wrong syntax & want to see it done right. Instinct says wrap a Array.from() around the headers assignment, then use for loop on headers inside scroll function. But then I'm fuzzy on what to do inside the forEach. anonymous function using `event.target`? using `.this`?
+const headers = document.getElementsByTagName("header")
+console.log(headers)
+window.addEventListener("scroll", () => {
+    headers[1].style.backgroundColor = "grey"
+})
+
+
+// //evertime I try to combine a forEach & a new thing it fails...
+// imgs.forEach(element => element.addEventListener("dragstart", (event) => {event.target.src = "../img/mouse-oops-i-think-i-broke-ur-computer.jpeg"}))
+
+// //fix1: eventListener stillworks, but image doesn't populate right. not accepting new src?
+// imgs[0].addEventListener("dragstart", () => {event.target.src = "../img/mouse-oops-i-think-i-broke-ur-computer.jpeg"})
+
+//fix2: also not the solution... I think I'm not doing src right. here's a failed attempt at using setAttribute().
+//I suspect I don't get how to refer back to the parent folder correctly, even after googling & trying multiple ways. This way would work as if it's being read from the same folder as the index.html, prev ones were as read from index.js...
+imgs[0].addEventListener("dragstart", () => {imgs[0].setAttribute("src", "img/mouse-oops-i-think-i-broke-ur-computer.jpeg")})
+
+
+// Failed attempt to play with `select`. I expect it to change the whole `p`s background, not just where I select...
+// document.querySelector("p").addEventListener("select", (event) => {
+//     //yeah, it's better procedure to declare the variable first in this case, but I wanted to know if it'd work.
+//     // document.querySelector("p").style.backgroundColor = "pink"
+//     // debugger
+//     event.target.style.backgroundColor = "pink" //proves something else is amiss...
+// })
+// console.log(document.querySelector("p")) //just to check that I was selecting text in the right area. Check.
+
+//fix1, still broken.
+const firstP = document.querySelector("p")
+firstP.addEventListener("select", () => {
+    console.log(`this line is getting run, right?`) //proves the selector is broken. Yay. Such happiness.
+    firstP.style.background="pink"
+})
+
+//easy mouse events to at least get mvp...
+
+firstP.addEventListener("click", () => {
+    firstP.style.fontSize = "2rem"
+})
+
+imgs[1].addEventListener("contextmenu", () => {
+    firstP.textContent = "What were you expecting, clicking over there?"
+})
+//original ambitions, Later realized that they were a bit advanced for the tools we have & my current skills.
 // * `wheel`qeue animation
 // * `load`
 // * `focus` on h1, bold
 // * `resize` reset display:none
-// * `scroll` p -> yellow
+// * `scroll` all p -> yellow
 // * `select`background - teal
 // * `dblclick` any element, display:none
 // * `drag / drop`,
