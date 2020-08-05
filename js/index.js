@@ -91,7 +91,7 @@ window.addEventListener("scroll", () => {
 
 //fix2: also not the solution... I think I'm not doing src right. here's a failed attempt at using setAttribute().
 //I suspect I don't get how to refer back to the parent folder correctly, even after googling & trying multiple ways. This way would work as if it's being read from the same folder as the index.html, prev ones were as read from index.js...
-imgs[0].addEventListener("dragstart", () => {imgs[0].setAttribute("src", "img/mouse-oops-i-think-i-broke-ur-computer.jpeg")})
+imgs[0].addEventListener("dragstart", () => {imgs[0].src = "./img/mouse-oops-i-think-i-broke-ur-computer"})
 
 
 // Failed attempt to play with `select`. I expect it to change the whole `p`s background, not just where I select...
